@@ -8,9 +8,11 @@ pool: santoshagentpool
 
 steps:
 - task: TerraformInstaller@1
+  displayName: 'terraforminstall'
   inputs:
     terraformVersion: 'latest'
 - task: TerraformTask@5
+  displayName: 'init chalrai'
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -19,9 +21,27 @@ steps:
     backendAzureRmContainerName: 'santoshcontainer'
     backendAzureRmKey: 'santoshstatefile.terraform.tfstate'
 - task: TerraformTask@5
+  displayName: 'fmt chalrai'
   inputs:
     provider: 'azurerm'
     command: 'custom'
     outputTo: 'console'
     customCommand: 'fmt'
+    environmentServiceNameAzureRM: 'santoshpipelineservice'
+- task: TerraformTask@5
+  displayName: 'validate chalrai'
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+- task: TerraformTask@5
+  displayName: 'plan chalrai'
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'santoshpipelineservice'
+- task: TerraformTask@5
+  displayName: 'apply chalrai'
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
     environmentServiceNameAzureRM: 'santoshpipelineservice'

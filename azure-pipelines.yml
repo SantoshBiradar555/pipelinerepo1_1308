@@ -22,7 +22,6 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'custom'
-    commandOptions: 'fmt'
     outputTo: 'console'
     customCommand: 'fmt'
     environmentServiceNameAzureRM: 'santoshpipelineservice'

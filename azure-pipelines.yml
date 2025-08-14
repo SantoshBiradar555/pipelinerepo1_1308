@@ -2,6 +2,7 @@
 
 trigger:
 - main
+- feature/*
 
 pool: santoshagentpool
 
@@ -40,6 +41,7 @@ steps:
     command: 'plan'
     environmentServiceNameAzureRM: 'santoshpipelineservice'
 - task: TerraformTask@5
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
   displayName: 'apply chalrai'
   inputs:
     provider: 'azurerm'

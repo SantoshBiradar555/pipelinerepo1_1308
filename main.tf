@@ -10,3 +10,7 @@ resource "azurerm_resource_group" "rg_block17" {
   name     = "santoshpipelinerg3"
   location = "West Europe"
 }
+resource "azurerm_resource_group" "rg_block18" {
+  name     = "santoshpipelinerg4"
+  location = "West Europe"
+}
